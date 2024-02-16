@@ -39,15 +39,29 @@ root.render(heading);
 import React from "react"
 import ReactDOM from "react-dom"
 
+const Title = () => <h1 className="head">This is title component</h1>;
+
+const Footer = () => {
+    return <h1 className="head">This is footer component</h1>;
+}
+
 const HeadingComponent = () => (
-    <div>
-        <h1 className="head" > Hello By using FUNCTIONAL COMPONENT</h1>
-    </div>    
+
+    <div id="container">
+        <Title />
+
+        <h2 className="head" > Hello By using FUNCTIONAL COMPONENT</h2>
+
+        <Footer />
+
+    </div>
 )
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent/>)
+root.render(<HeadingComponent />)
+
+
 
 
 
