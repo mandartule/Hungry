@@ -36,30 +36,61 @@ root.render(heading);
 
 //FUNCTIONAL COMPONENT
 
-import React from "react"
+// import React from "react"
+// import ReactDOM from "react-dom"
+
+// const Title = () => <h1 className="head">This is title component</h1>;
+
+// const Footer = () => {
+//     return <h1 className="head">This is footer component</h1>;
+// }
+
+// const HeadingComponent = () => (
+
+//     <div id="container">
+//         <Title />
+
+//         <h2 className="head" > Hello By using FUNCTIONAL COMPONENT</h2>
+
+//         <Footer />
+
+//     </div>
+// )
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(<HeadingComponent />)
+
+//----------------------------------------------------------------------------------------
+
+//inseting React Element in another React Element
+
+import React from "react";
 import ReactDOM from "react-dom"
 
-const Title = () => <h1 className="head">This is title component</h1>;
+const elem = <span> React Element </span>
 
-const Footer = () => {
-    return <h1 className="head">This is footer component</h1>;
-}
+const title = (
+    
+    <h1 className="head" tabIndex="5">
+        
+        This is title component
+    </h1>
+)
 
-const HeadingComponent = () => (
-
+const Heading = () => (
     <div id="container">
-        <Title />
 
+        {title}
+        <br/><span>{elem}</span>
         <h2 className="head" > Hello By using FUNCTIONAL COMPONENT</h2>
-
-        <Footer />
-
     </div>
 )
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent />)
+root.render(<Heading/>);
+
 
 
 
