@@ -71,3 +71,14 @@
     background-color: #f5f5f5;
     margin-bottom: 20px;
 }
+
+.filter{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin : 20px 20px;
+}
+
+.filter-btn{
+    padding: 10px 10px;
+}
