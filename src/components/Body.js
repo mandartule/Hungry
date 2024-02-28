@@ -3,6 +3,7 @@ import RestrorantCard from "./RestaurantCard";
 
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import e from "cors";
 
 
 const Body = () => {
@@ -13,6 +14,10 @@ const Body = () => {
 
     //when proxy is not working comment below line and uncomment the above line till fetchData function
     const [ratedList, setRatedList] = useState([]);
+
+    const [searchText, setSearchText] = useState("");
+
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -25,6 +30,8 @@ const Body = () => {
 
         setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
         
+        //updating for if we make a empty search in search bar
+        setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
     }
     
     
@@ -38,8 +45,25 @@ const Body = () => {
         <div className="body">
 
             <div className="search">
-                <input type="text" placeholder="Search for restaurants" />
-                <button>Search</button>
+                <input type="text" className="search-bar" placeholder="Search for restaurants" 
+                    value = {searchText}
+                    onChange={(e) => {
+                        setSearchText(e.target.value);
+                        
+                        const filteredList = ratedList.filter(
+                            (res) => res.info.name.toLowerCase().includes(e.target.value.toLowerCase())
+                        );
+                        setFilteredRestaurants(filteredList);
+                    }}
+                />
+                <button
+                    onClick={() => {
+                        const filteredRestaurants = ratedList.filter(
+                            (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                        );
+                        setFilteredRestaurants(filteredRestaurants);
+                    }}
+                >Search</button>
             </div>
 
             <div className="filter">
@@ -56,7 +80,7 @@ const Body = () => {
             </div>
 
             <div className="res-container">
-                {ratedList.map((restaurant) => <RestrorantCard key={restaurant.info.id} res={restaurant} />)}
+                {filteredRestaurants.map((restaurant) => <RestrorantCard key={restaurant.info.id} res={restaurant} />)}
             </div>
 
 
