@@ -2,10 +2,17 @@ import resList from "../utils/mockData";
 import RestrorantCard from "./RestaurantCard";
 
 import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+
 
 const Body = () => {
 
-    const [ratedList, setRatedList] = useState(resList);
+    const backupData = resList[0].data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+    
+    //const [ratedList, setRatedList] = useState(backupData);
+
+    //when proxy is not working comment below line and uncomment the above line till fetchData function
+    const [ratedList, setRatedList] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -16,18 +23,18 @@ const Body = () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
 
-        setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-        console.log(json);
-        console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-        //data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+        setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        
     }
-
-
-
-
+    
     
 
-    return (
+    if (ratedList.length === 0) {
+        return <Shimmer />;
+    }
+    
+
+     return (
         <div className="body">
 
             <div className="search">

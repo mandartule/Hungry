@@ -37,7 +37,7 @@
     height: 500px;
     width: 300px;
     margin-top: 10px;
-
+    
 }
 
 .button {
@@ -81,4 +81,39 @@
 
 .filter-btn{
     padding: 10px 10px;
+    cursor: pointer;
+}
+
+.shimmer-container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 80%;
+}
+
+.shimmer-card{
+    background-color: rgb(216, 216, 186);
+    padding: 5px;
+    height: 350px;
+    width: 300px;
+    margin-top: 10px;
+    
+}
+
+.shimmer-img-box{
+    width: 100%;
+    height: 60%;
+    background-color: rgb(176, 176, 154);
+    
+}
+
+.login-btn {
+    background-color: rgb(176, 176, 154);
+    color: white;
+    margin : 1px 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
