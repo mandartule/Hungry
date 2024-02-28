@@ -56,7 +56,7 @@ const Body = () => {
                         setFilteredRestaurants(filteredList);
                     }}
                 />
-                <button
+                <button className="search-btn"
                     onClick={() => {
                         const filteredRestaurants = ratedList.filter(
                             (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
