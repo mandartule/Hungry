@@ -8,7 +8,7 @@ const Error = () => {
     return (
         <div>
             <h1>Opps Error</h1>
-            <img src="https://http.cat/images/400.jpg"></img>
+            <img  className="errorImg" src={"https://http.cat/"+error.status}></img>
             <h2>
                 {error.status}:{error.statusText}
             </h2>
