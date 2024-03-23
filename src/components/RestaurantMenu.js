@@ -30,18 +30,18 @@ const RestaurantMenu = () => {
         return <Shimmer />
     }
 
-    const final = resInfo?.data?.cards[0]?.card?.card?.info;
+    const rest = resInfo?.data?.cards[0]?.card?.card?.info;
     const itemCard = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
-    console.log(itemCard);
+    //console.log(itemCard);
 
     return (
 
 
 
         <div>
-            <h1>{final?.name}</h1>
-            <h3>{final?.costForTwoMessage}</h3>
-            <h3>Cusines : {final?.cuisines.join(", ")}</h3>
+            <h1>{rest?.name}</h1>
+            <h3>{rest?.costForTwoMessage}</h3>
+            <h3>Cusines : {rest?.cuisines.join(", ")}</h3>
             <h2>Menu</h2>
             <ul>
                 {itemCard?.map((item) => (
