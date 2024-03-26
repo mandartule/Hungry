@@ -71,9 +71,9 @@ root.render(heading);
 // const elem = <span> React Element </span>
 
 // const title = (
-    
+
 //     <h1 className="head" tabIndex="5">
-        
+
 //         This is title component
 //     </h1>
 // )
@@ -106,6 +106,12 @@ import Error from "./components/Error"
 
 import RestaurantMenu from "./components/RestaurantMenu";
 
+//import Grocery from "./components/Grocery"
+
+import { lazy, Suspense } from "react";
+
+const Grocery = lazy(() => import("./components/Grocery"));
+
 const AppLayout = () => (
 
     <div className="app">
@@ -119,12 +125,12 @@ const appRouter = createBrowserRouter([
     {
         path: "/",
         element: <AppLayout />,
-        children : [
+        children: [
             {
                 path: "/",
                 element: <Body />
             },
-            {  
+            {
                 path: "/about",
                 element: <About />
             },
@@ -135,6 +141,13 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurants/:resId",
                 element: <RestaurantMenu />
+            },
+            {
+                path: "/grocery",
+                //suspence is added to give something to react while the grocery components loads
+                element: (<Suspense fallback={<h1>Loading....</h1>}>
+                    <Grocery/>
+                </Suspense>),
             }
         ],
         errorElement: <Error />
@@ -143,4 +156,4 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router = {appRouter}/>);
+root.render(<RouterProvider router={appRouter} />);

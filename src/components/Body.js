@@ -6,6 +6,8 @@ import Shimmer from "./Shimmer";
 
 import {Link} from "react-router-dom";
 
+import useOnlineStatus from "./useOnlineStatus";
+
 
 const Body = () => {
 
@@ -29,12 +31,25 @@ const Body = () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
 
-        console.log(json);
+        console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
 
         setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
         
         //updating for if we make a empty search in search bar
         setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+    }
+
+    const status = useOnlineStatus();
+
+    if(!status){
+
+        return(
+            <div>
+                <h1>Looks Like you are offline, Please Check your connection !</h1>
+                <img  className="offlineImg" src="https://static.vecteezy.com/system/resources/previews/005/720/385/large_2x/sad-face-cloud-icon-no-internet-connection-free-vector.jpg"></img>
+                
+            </div>
+        )
     }
     
     
@@ -79,7 +94,9 @@ const Body = () => {
                     console.log(filteredList);
 
                     setRatedList(filteredList);
-                }}><h3>Top Rated Restaurants ⭐⭐⭐⭐</h3></button>
+                }}>
+                <h3>Top Rated Restaurants ⭐⭐⭐⭐</h3></button>
+                
             </div>
 
             <div className="res-container">
