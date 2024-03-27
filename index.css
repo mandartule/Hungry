@@ -171,3 +171,8 @@
     width: 400px;
     height: 400px;
 }
+
+.linkTag{
+    color :rgb(0, 0, 0);
+    text-decoration: none;
+}
