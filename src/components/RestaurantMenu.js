@@ -16,7 +16,7 @@ const RestaurantMenu = () => {
 
     console.log(resInfo);
     const rest = resInfo?.data.cards[2].card.card.info;
-    const itemCard = resInfo?.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards;
+    const itemCard = resInfo?.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards;
     console.log(itemCard);
 
     return (
