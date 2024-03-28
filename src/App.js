@@ -116,7 +116,9 @@ const AppLayout = () => (
 
     <div className="app">
         <Header />
-        <Outlet />
+        <div className=" pt-44">
+            <Outlet />
+        </div>
     </div>
 
 )
@@ -146,7 +148,7 @@ const appRouter = createBrowserRouter([
                 path: "/grocery",
                 //suspence is added to give something to react while the grocery components loads
                 element: (<Suspense fallback={<h1>Loading....</h1>}>
-                    <Grocery/>
+                    <Grocery />
                 </Suspense>),
             }
         ],
