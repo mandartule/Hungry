@@ -13,10 +13,10 @@ const Body = () => {
 
     const backupData = resList[0].data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
 
-    //const [ratedList, setRatedList] = useState(backupData);
+    const [ratedList, setRatedList] = useState(backupData);
 
     //when proxy is not working comment below line and uncomment the above line till fetchData function
-    const [ratedList, setRatedList] = useState([]);
+    //const [ratedList, setRatedList] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
