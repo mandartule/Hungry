@@ -1,5 +1,5 @@
 import resList from "../utils/mockData";
-import RestrorantCard from "./RestaurantCard";
+import RestrorantCard,{withPromoted} from "./RestaurantCard";
 
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -22,6 +22,9 @@ const Body = () => {
 
     const [filteredRestaurants, setFilteredRestaurants] = useState(backupData);
 
+    //promoted cards
+    const PromotedRestrorantCard = withPromoted(RestrorantCard);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -31,7 +34,7 @@ const Body = () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
 
-        console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        //console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
 
         setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
 
@@ -61,7 +64,7 @@ const Body = () => {
 
     return (
         <div className="body ">
-
+        
 
             <div className="search flex items-center space-x-4  mt-10 mb-10">
 
@@ -92,8 +95,8 @@ const Body = () => {
                         const filteredList = ratedList.filter(
                             (res) => res.info.avgRating > 4.4
                         );
-                        console.log(ratedList);
-                        console.log(filteredList);
+                        // console.log(ratedList);
+                        //console.log(filteredList);
 
                         setRatedList(filteredList);
                     }}>
@@ -103,13 +106,18 @@ const Body = () => {
             </div>
 
 
-
+            
             <div className="flex flex-wrap ml-32 w-11/12 items-start">
 
-                {filteredRestaurants.map((restaurant) => (
+                
 
-                    <Link className="linkTag" key={restaurant.info.id} to={"restaurants/" + restaurant.info.id}><RestrorantCard res={restaurant} /></Link>))
+                {filteredRestaurants.map((restaurant) => (
+                    
+                    <Link className="linkTag" key={restaurant.info.id} to={"restaurants/" + restaurant.info.id}>
+                    {restaurant.info.aggregatedDiscountInfoV3?.header ?<PromotedRestrorantCard res={restaurant} />:<RestrorantCard res={restaurant} />}
+                    </Link>))
                 }
+                
             </div>
 
 

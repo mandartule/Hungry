@@ -12,7 +12,7 @@ const Header = () => {
     const [loginBtn, setLogin] = useState("Login");
 
     return (
-        <div className="flex bg-pink-200 rounded-lg shadow-xl fixed  z-50 w-full justify-between border-solid border-4 border-pink-300">
+        <div className="flex bg-pink-200 rounded-lg shadow-xl fixed  z-50 w-full justify-between ">
             <div className="logo-container">
                 <img className="w-48 rounded-lg border-dashed border-4 border-black" src={LOGO_URL} />
             </div>

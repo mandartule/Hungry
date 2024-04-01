@@ -17,4 +17,18 @@ const RestrorantCard = (props) => {
     )
 }
 
+export const withPromoted = (RestrorantCard) =>{
+    return(props) => {
+        return(
+            <div>
+            <label className="absolute bg-opacity-90 z-40 bg-slate-700 text-red-100 m-2 p-2 rounded-md font-medium">
+            {props.res.info.aggregatedDiscountInfoV3.header + (props.res.info.aggregatedDiscountInfoV3?.subHeader ? " : " + props.res.info.aggregatedDiscountInfoV3.subHeader : "")}</label>
+            <RestrorantCard {...props}/>
+            </div>
+        )
+    }
+}
+
+
+
 export default RestrorantCard;
