@@ -13,10 +13,10 @@ const Body = () => {
 
     const backupData = resList[0].data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
 
-    const [ratedList, setRatedList] = useState(backupData);
+    //const [ratedList, setRatedList] = useState(backupData);
 
     //when proxy is not working comment below line and uncomment the above line till fetchData function
-    //const [ratedList, setRatedList] = useState([]);
+    const [ratedList, setRatedList] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
@@ -31,7 +31,7 @@ const Body = () => {
 
     const fetchData = async () => {
 
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
 
         //console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
