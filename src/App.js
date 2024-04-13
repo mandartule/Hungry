@@ -95,6 +95,7 @@ root.render(heading);
 
 import React from "react"
 import ReactDOM from "react-dom/client"
+import { useState } from "react"
 
 import Header from "./components/Header"
 import Body from "./components/Body"
@@ -112,16 +113,35 @@ import { lazy, Suspense } from "react";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 
-const AppLayout = () => (
+import UserContext from "./utils/UserContext"
 
-    <div className="app">
-        <Header />
-        <div className=" pt-44">
-            <Outlet />
+const AppLayout = () => {
+
+    const [userName, setUserName] = useState();
+
+    //authetication logic
+    useState(() => {
+        //check if user is logged in
+        const data = {
+            userName: "Mandar Tule",
+        }
+
+        setUserName(data.userName);
+
+    })
+
+    return (
+        <UserContext.Provider value={{ loggedInUser: userName }}>
+        <div className="app">
+            <Header />
+            <div className=" pt-44">
+                <Outlet />
+            </div>
         </div>
-    </div>
+        </UserContext.Provider>
+    );
 
-)
+}
 
 const appRouter = createBrowserRouter([
     {

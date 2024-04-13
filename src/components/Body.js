@@ -31,15 +31,15 @@ const Body = () => {
 
     const fetchData = async () => {
 
-        const data = await fetch("https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
 
-        //console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        //console.log(json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
 
-        setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants || json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
 
         //updating for if we make a empty search in search bar
-        setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants || json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
     }
 
     const status = useOnlineStatus();
