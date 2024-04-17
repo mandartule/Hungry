@@ -16,6 +16,7 @@ const Cart = () => {
             <h1 className="text-3xl font-bold">Cart</h1>
             <button className="bg-red-600 text-white px-4 py-2 rounded-lg" onClick={handleClearCart}>Clear Cart</button>
             <ItemsList items={cartItems} />
+            {cartItems.length === 0 && <p className="text-6xl">Bro have some food ! 🍜</p>}
         </div>
     )
 }
