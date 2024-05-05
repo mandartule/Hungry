@@ -99,6 +99,7 @@ import { useState } from "react"
 
 import Header from "./components/Header"
 import Body from "./components/Body"
+import Footer from "./components/Footer"
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
 import About from "./components/About";
@@ -138,14 +139,15 @@ const AppLayout = () => {
 
     return (
         <Provider store={appStore}>
-        <UserContext.Provider value={{ loggedInUser: userName }}>
-        <div className="app">
-            <Header />
-            <div className=" pt-44">
-                <Outlet />
-            </div>
-        </div>
-        </UserContext.Provider>
+            <UserContext.Provider value={{ loggedInUser: userName }}>
+                <div className="flex flex-col min-h-screen bg-slate-300">
+                    <Header />
+                    <div className="flex-grow pt-44">
+                        <Outlet />
+                    </div>
+                    <Footer />
+                </div>
+            </UserContext.Provider>
         </Provider>
     );
 

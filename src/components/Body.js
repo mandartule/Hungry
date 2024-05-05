@@ -1,5 +1,5 @@
 import resList from "../utils/mockData";
-import RestrorantCard,{withPromoted} from "./RestaurantCard";
+import RestrorantCard, { withPromoted } from "./RestaurantCard";
 
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -13,10 +13,10 @@ const Body = () => {
 
     const backupData = resList[0].data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
 
-    //const [ratedList, setRatedList] = useState(backupData);
+    const [ratedList, setRatedList] = useState(backupData);
 
     //when proxy is not working comment below line and uncomment the above line till fetchData function
-    const [ratedList, setRatedList] = useState([]);
+    //const [ratedList, setRatedList] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
@@ -25,22 +25,22 @@ const Body = () => {
     //promoted cards
     const PromotedRestrorantCard = withPromoted(RestrorantCard);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
-    const fetchData = async () => {
+    // // const fetchData = async () => {
 
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        const json = await data.json();
+    // //     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1544444&lng=78.9943191&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    // //     const json = await data.json();
 
-        //console.log(json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
+    // //     //console.log(json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
 
-        setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants || json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
+    // //     setRatedList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
 
-        //updating for if we make a empty search in search bar
-        setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants || json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants);
-    }
+    // //     //updating for if we make a empty search in search bar
+    // //     setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+    // // }
 
     const status = useOnlineStatus();
 
@@ -64,11 +64,14 @@ const Body = () => {
 
     return (
         <div className="body ">
-        
+
 
             <div className="search flex items-center space-x-4  mt-10 mb-10">
 
-                <input type="text" className="search-bar bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-50 appearance-none leading-normal ml-96" placeholder="Search for restaurants"
+                <input
+                    type="text"
+                    className="search-bar bg-white focus:outline-none focus:shadow-outline rounded-lg py-2 px-4 block w-50 appearance-none leading-normal ml-96 border-2 border-black"
+                    placeholder="Search for restaurants"
                     value={searchText}
                     onChange={(e) => {
                         setSearchText(e.target.value);
@@ -79,7 +82,7 @@ const Body = () => {
                         setFilteredRestaurants(filteredList);
                     }}
                 />
-                <button className="search-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                <button className="search-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-sm shadow-black"
                     onClick={() => {
                         const filteredRestaurants = ratedList.filter(
                             (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -90,7 +93,7 @@ const Body = () => {
 
 
                 <div className="filter">
-                    <button className=" ml-40 filter-btn bg-green-500 hover:bg-green-700 text-neutral-800 font-bold py-2 px-4 rounded" onClick={() => {
+                    <button className=" shadow-sm shadow-black ml-40 filter-btn bg-green-500 hover:bg-green-700 text-neutral-800 font-bold py-2 px-4 rounded" onClick={() => {
 
                         const filteredList = ratedList.filter(
                             (res) => res.info.avgRating > 4.4
@@ -106,18 +109,18 @@ const Body = () => {
             </div>
 
 
-            
+
             <div className="flex flex-wrap ml-32 w-11/12 items-start">
 
-                
+
 
                 {filteredRestaurants.map((restaurant) => (
-                    
+
                     <Link className="linkTag" key={restaurant.info.id} to={"restaurants/" + restaurant.info.id}>
-                    {restaurant.info.aggregatedDiscountInfoV3?.header ?<PromotedRestrorantCard res={restaurant} />:<RestrorantCard res={restaurant} />}
+                        {restaurant.info.aggregatedDiscountInfoV3?.header ? <PromotedRestrorantCard res={restaurant} /> : <RestrorantCard res={restaurant} />}
                     </Link>))
                 }
-                
+
             </div>
 
 
