@@ -12,7 +12,7 @@ const Cart = () => {
     }
 
     return (
-        <div className="flex flex-col items-center pt-10 space-y-5 bg-yellow-100 rounded-sm min-h-screen">
+        <div className="flex flex-col items-center pt-10npm install -g firebase-toolsnpm install -g firebase-tools space-y-5 bg-yellow-100 rounded-sm min-h-screen">
             <h1 className="text-3xl font-bold">Cart</h1>
             <button className="bg-red-600 text-white px-4 py-2 rounded-lg" onClick={handleClearCart}>Clear Cart</button>
             <ItemsList items={cartItems} />
