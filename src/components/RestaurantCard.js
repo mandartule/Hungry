@@ -20,7 +20,7 @@ const RestrorantCard = (props) => {
             <h4 className="text-lg font-bold">{avgRating} Stars</h4>
             <h4 className="text-lg font-bold">{costForTwo}</h4>
             <h4 className="text-lg font-bold">{sla.deliveryTime} Minutes</h4>
-            <h5 className="text-sm text-gray-500">{loggedInUser}</h5>
+            
         </div>
     )
 }
@@ -29,7 +29,7 @@ export const withPromoted = (RestrorantCard) =>{
     return(props) => {
         return(
             <div>
-            <label className="absolute bg-opacity-90 z-40 bg-slate-700 text-red-100 m-2 p-2 rounded-md font-medium">
+            <label className="absolute bg-gray-700 bg-opacity-90 z-40  text-red-100 m-2 p-2 rounded-md font-medium">
             {props.res.info.aggregatedDiscountInfoV3.header + (props.res.info.aggregatedDiscountInfoV3?.subHeader ? " : " + props.res.info.aggregatedDiscountInfoV3.subHeader : "")}</label>
             <RestrorantCard {...props}/>
             </div>
