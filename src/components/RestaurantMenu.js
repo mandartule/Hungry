@@ -11,14 +11,16 @@ const RestaurantMenu = () => {
     
     const { resId } = useParams();
     const resInfo = useRestaurantMenu(resId);
+    
 
     if (resInfo === null) {
         return <Shimmer />
     }
 
-    //console.log(resInfo);
+    console.log(resInfo);
     const rest = resInfo?.data.cards[2].card.card.info;
 
+    
     const categories = resInfo?.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
     (c) => c.card.card["@type"] ===  "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
